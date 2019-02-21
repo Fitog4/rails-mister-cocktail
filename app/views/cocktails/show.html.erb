@@ -3,15 +3,15 @@
 <h2>Recipe</h2>
 <ul>
 <% @cocktail.doses.each do |dose| %>
-  <li><%= dose.ingredient.name %>: <%= dose.description %></li>
+  <li><%= dose.description %> <%= 'of ' unless /\A\d+\z/.match?(dose.description) %><%= dose.ingredient.name %><%= link_to raw("<i class=\"fas fa-trash-alt btn btn-base\"></i>"), cocktail_dose_path(@cocktail, dose), method: :delete, data: { confirm: "Are you sure?" } %></li>
 <% end %>
 </ul>
 
 <h2>Add ingredient</h2>
 <%= simple_form_for [@cocktail, @dose] do |f| %>
   <%= f.association :ingredient, prompt: "Choose an ingredient" %>
-  <%= f.input :description %>
-  <%= f.button :submit %>
+  <%= f.input :description, label: "Insert the quantity" %>
+  <%= f.submit "Add ingredient", class: "btn btn-base" %>
 <% end %>
 
 
