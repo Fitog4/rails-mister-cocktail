@@ -9,7 +9,7 @@
 
 <h2>Add ingredient</h2>
 <%= simple_form_for [@cocktail, @dose] do |f| %>
-  <%= f.association :ingredient, prompt: "Choose an ingredient" %>
+  <%= f.input :ingredient_id, input_html:{class: "select2"} ,collection: Ingredient.all %>
   <%= f.input :description, label: "Insert the quantity" %>
   <%= f.submit "Add ingredient", class: "btn btn-base" %>
 <% end %>
