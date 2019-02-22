@@ -1,5 +1,13 @@
 <h1><%= @cocktail.name %></h1>
-
+<% if @cocktail.photo.file.nil? %>
+<%= simple_form_for @cocktail do |f| %>
+  <%= f.input :photo %>
+  <%= f.input :photo_cache, as: :hidden %>
+  <%= f.submit 'Add photo', class: "btn btn-base" %>
+<% end %>
+<% else %>
+<%= cl_image_tag @cocktail.photo, height: 300, width: 400, crop: :fill %>
+<% end %>
 <h2>Recipe</h2>
 <ul>
 <% @cocktail.doses.each do |dose| %>
@@ -16,3 +24,5 @@
 
 
 <%= link_to 'Back to cocktails', '/', class: "btn btn-primary" %>
+
+<!-- , url: cocktail_path(@cocktail), method: :patch  -->
