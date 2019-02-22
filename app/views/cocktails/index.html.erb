@@ -4,6 +4,6 @@
 
 <ul>
   <% @cocktails.each do |cocktail| %>
-  <li><%= link_to cocktail.name, cocktail_path(cocktail) %></li>
+  <li><%= link_to cocktail.name, cocktail_path(cocktail) %> <% unless cocktail.photo.file.nil? %><%= image_tag cocktail.photo.url(:thumbnail) %><% end %></li>
   <% end %>
 </ul>
